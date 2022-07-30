@@ -12,10 +12,10 @@ class PseudocodeLexer(RegexLexer):
     myComments = '\/\*.*\*\/|'                              # C Style Block
     myComments += '\/\/.*\n|#.*\n|'                         # C/Sh Style Line
     myComments += ';.*\n'                                   # Lisp Style Line
-    myKeywords = 'read|obtain|get|'                         # Input
-    myKeywords += 'print|display|show|'                     # Output
-    myKeywords += 'compute|calculate|determine|'            # Compute
-    myKeywords += 'set|initialize|init|let|'                # Initialize
+    myKeywords = 'read|obtain|get|take|use|copy|'           # Input
+    myKeywords += 'print|display|show|save|return|'         # Output
+    myKeywords += 'compute|calculate|determine|append|'     # Compute
+    myKeywords += 'set|initialize|init|let|to|'             # Initialize
     myKeywords += 'increment|bump|decrement|'               # Add/Sub one
     myKeywords += 'if|then|else|otherwise|'                 # If-Then-Else
     myKeywords += 'while|done|endwhile|do|'                 # (Do) While
