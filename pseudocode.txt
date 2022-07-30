@@ -128,4 +128,7 @@ begin program.
     [Konstant Mocker] [KM]
     [Crossed Konstant Mocker] [C(KM)]
     [Theta] [θ]
+; Edge Cases
+
+    print newline
 end program.

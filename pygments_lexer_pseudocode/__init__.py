@@ -18,7 +18,7 @@ class PseudocodeLexer(RegexLexer):
     myKeywords += 'set|initialize|init|let|'                # Initialize
     myKeywords += 'increment|bump|decrement|'               # Add/Sub one
     myKeywords += 'if|then|else|otherwise|'                 # If-Then-Else
-    myKeywords += 'while|do|endwhile|done|'                 # (Do) While
+    myKeywords += 'while|done|endwhile|do|'                 # (Do) While
     myKeywords += 'case|of|others|endcase|'                 # Case
     myKeywords += 'repeat|until|'                           # Repeat Until
     myKeywords += 'for|endfor|'                             # For
@@ -72,8 +72,12 @@ class PseudocodeLexer(RegexLexer):
         """Replace complex numbers with Unicode equivalents."""
         num = match.group(0)
 
-        S = ('`5/8`', '`5/6`', '`4/5`', '`1/8`', '`1/5`', '`1/2`', '`1/4`', '`1/6`', '`1/3`', '`7/8`', '`3/8`', '`3/5`', '`3/4`', '`2/5`', '`2/3`', '`pi`', '`phi`')
-        R = ('⅝', '⅚', '⅘', '⅛', '⅕', '½', '¼', '⅙', '⅓', '⅞', '⅜', '⅗', '¾', '⅖', '⅔', 'π', 'φ')
+        S = ('`5/8`', '`5/6`', '`4/5`', '`1/8`', '`1/5`', '`1/2`', '`1/4`',
+             '`1/6`', '`1/3`', '`7/8`', '`3/8`', '`3/5`', '`3/4`', '`2/5`',
+             '`2/3`', '`pi`', '`phi`')
+        R = ('⅝', '⅚', '⅘', '⅛', '⅕', '½', '¼',
+             '⅙', '⅓', '⅞', '⅜', '⅗', '¾', '⅖',
+             '⅔', 'π', 'φ')
 
         if num in S:
             num = R[S.index(num)]
@@ -96,7 +100,7 @@ class PseudocodeLexer(RegexLexer):
                  (r'\d+/\d+', Number)
         ],
         'core': [  # Keywords
-                 (r'\b(' + myKeywords + ')(.+\.)', bygroups(Keyword, Text)),
+                 (r'\b(' + myKeywords + ')', Keyword),
 
                  # Data Types
                  (r'\b(' + myDatatypes + ')',
