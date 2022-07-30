@@ -1,9 +1,0 @@
-Set moveCount to 1
-FOR each row on the board
-    FOR each column on the board
-        IF gameBoard position (row, column) is occupied THEN
-            CALL findAdjacentTiles with row, column
-            INCREMENT moveCount
-        END IF
-    END FOR
-END FOR

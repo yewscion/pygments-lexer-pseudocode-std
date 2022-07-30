@@ -9,6 +9,46 @@ from pygments.token import Punctuation, Text, Comment, \
 class PseudocodeLexer(RegexLexer):
     """Lex our Pseudocode According to the Standard."""
 
+    myComments = '\/\*.*\*\/|'                              # C Style Block
+    myComments += '\/\/.*\n|#.*\n|'                         # C/Sh Style Line
+    myComments += ';.*\n'                                   # Lisp Style Line
+    myKeywords = 'read|obtain|get|'                         # Input
+    myKeywords += 'print|display|show|'                     # Output
+    myKeywords += 'compute|calculate|determine|'            # Compute
+    myKeywords += 'set|initialize|init|let|'                # Initialize
+    myKeywords += 'increment|bump|decrement|'               # Add/Sub one
+    myKeywords += 'if|then|else|otherwise|'                 # If-Then-Else
+    myKeywords += 'while|do|endwhile|done|'                 # (Do) While
+    myKeywords += 'case|of|others|endcase|'                 # Case
+    myKeywords += 'repeat|until|'                           # Repeat Until
+    myKeywords += 'for|endfor|'                             # For
+    myKeywords += 'call|exception|when|as|recurse'          # Program Flow
+    myConstants = 'true|false|'                             # Booleans
+    myConstants += 'nonexistant|unbound|missing|null|'      # Unbound
+    myConstants += 'success|failure|'                       # Status
+    myConstants += 'newline|beep|indent'                    # Formatting
+    myDatatypes = 'number|string|character|boolean|'        # Basics
+    myDatatypes += 'list|array|sequence|'                   # Collections
+    myDatatypes += 'nothing|maybe|symbol|'                  # Abstractions
+    myDatatypes += 'constant|operator|procedure|'           # Program
+    myDatatypes += 'file|stream|pipe|port|'                 # OS
+    myDatatypes += 'sum|difference|product|quotient|remainder' # Results
+    myOperators =  '>\s|<\s|==|!=|<>|<=|>=|=|!<|!>|≡|≯|≮|≥|≤|≠|' # Comparison
+    myOperators += 'less than|more than|greater than|'      # Comparison Words 1
+    myOperators += 'equal to|different than|different from|'# Comparison Words 2
+    myOperators += '¬|⊻|∨|∧|&&|\|\||'                               # Logical
+    myOperators += 'not|xor|and|or|exlusive|'               # Logical Words
+    myOperators += '->|<-|→|←|'                             # Arrows
+    myOperators += 'resulting in|fed|right|left|'            # Arrows Words
+    myOperators += '\^|\*|\+|-|\/|\%|×|÷|'                  # Arithmetic
+    myOperators += 'plus|minus|times|divided by|modulo|'    # Arithmetic Words 1
+    myOperators += 'add|subtract|multiply|divide|'          # Arithmetic Words 2
+    myOperators += 'take the remainder of|to the power of|' # Artihmetic Words 3
+    myOperators += 'power|squared|cubed|root|square|cube'  # Arithmetic Words 4
+    myPunctuation = '\(|\)|\,|:'                        # Basics
+    myIntrinsics = '\[.*\S+.*\]\s'                                 # Brackets
+    myComplexNumbers = '`.*\S.*`'
+    
     name = 'Pseudocode (std)'
     aliases = ['pseudocode', 'pseudo', 'algorithm', 'algo']
     filenames = ['*.algo', '*.pseudocode']
@@ -19,63 +59,61 @@ class PseudocodeLexer(RegexLexer):
         """Replace ASCII digraphs with Unicode equivalents."""
         op = match.group(0)
 
-        S = ('<=', '>=', '<>', '<-', '^')
-        R = ('≤',  '≥',  '≠',  '←',  '↑')
+        S = ('<=', '>=', '<>', '!=', '==', '->', '<-', '*', '/', '!<', '!>',
+             '||', '&&')
+        R = ('≤', '≥', '≠', '≠', '≡', '→', '←', '×', '÷', '≮', '≯', '∨', '∧')
 
         if op in S:
             op = R[S.index(op)]
 
         yield match.start(), Operator, op
 
+    def num_replace(lexer, match):
+        """Replace complex numbers with Unicode equivalents."""
+        num = match.group(0)
+
+        S = ('`5/8`', '`5/6`', '`4/5`', '`1/8`', '`1/5`', '`1/2`', '`1/4`', '`1/6`', '`1/3`', '`7/8`', '`3/8`', '`3/5`', '`3/4`', '`2/5`', '`2/3`', '`pi`', '`phi`')
+        R = ('⅝', '⅚', '⅘', '⅛', '⅕', '½', '¼', '⅙', '⅓', '⅞', '⅜', '⅗', '¾', '⅖', '⅔', 'π', 'φ')
+
+        if num in S:
+            num = R[S.index(num)]
+        else:
+            num = num.replace('`', '')
+
+        yield match.start(), Number, num
+       
+
     tokens = {
         'root': [
-                 (r'\/\*.*\*\/', Comment),
-                 (r'(\/\/|#).*\n', Comment),
-                 (r'\|', Comment),
-                 (r'\{(.*)\}', Comment),
+                 (r''+ myComments, Comment),
                  include('strings'),
                  include('core'),
-                 (r'(begin +|end +)(.+$)',
+                 (r'(begin |end )(.+)',
                   bygroups(Keyword, Name.Function)),
                  (r'[a-zéàùçèÉÀÙÇÈ][a-z0-9éàùçèÉÀÙÇÈ_]*', Name.Variable),
                  include('nums'),
-                 (r'[\s]+', Text)
+                 (r'[\s]+', Text),
+                 (r'\d+/\d+', Number)
         ],
         'core': [  # Keywords
-                 (r'\b(read|obtain|get'              # Input
-                  r'print|display|show'              # Output
-                  r'compute|calculate|determine'     # Compute
-                  r'set|initialize|init|let'         # Initialize
-                  r'increment|bump|decrement'        # Add/Sub one
-                  r'if[ _]then|if|then|else|endif'   # If-Then-Else
-                  r'while|do|endwhile|done'          # (Do) While
-                  r'case|of|others|endcase'          # Case
-                  r'repeat[ _]until|repeat|until'    # Repeat Until
-                  r'for|endfor'                      # For
-                  r'call|exception|when|as|recurse'  # Program Flow
-                  r')\s*\b', Keyword),
+                 (r'\b(' + myKeywords + ')(.+\.)', bygroups(Keyword, Text)),
 
                  # Data Types
-                 (r'\b(integer?|string?|float?|character?'
-                  r'boolean?|array?|nothing)\s*\b',
+                 (r'\b(' + myDatatypes + ')',
                   Keyword.Type),
 
-                 (r'\b(true|false|nil|null)\s*\b',
+                 (r'\b('+ myConstants + ')',
                   Name.Constant),
 
                  # Operators
-                 (r'(<=|>=|<>|<-|\^|\*|\+|-|\/|<|>|=|\\\\|%'
-                  r'←|↑|≤|≥|≠|÷|×|\.\.|\[|\]|\.|not|xor|and|or)',
+                 (r'(' + myOperators + ')',
                   op_replace),
 
-                 (r'(\(|\)|\,|\;|:)',
+                 (r'(' + myPunctuation + ')',
                   Punctuation),
 
                  # Intrinsics
-                 (r'\b(sqrt|pow|cos|sin|tan|arccos|arcsin|arctan'
-                  r'arctan2|add|subtract|multiply|divide'
-                  r'exp|ln|log'
-                  r')\s*\b', Name.Builtin)
+                 (r'' + myIntrinsics, Name.Builtin)
                 ],
 
         'strings': [
@@ -86,6 +124,7 @@ class PseudocodeLexer(RegexLexer):
         'nums': [
                  (r'\d+(?![.Ee])', Number.Integer),
                  (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
-                 (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float)
+                 (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+                 (r'' + myComplexNumbers, num_replace)
                 ],
         }

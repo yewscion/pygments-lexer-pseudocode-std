@@ -1,0 +1,131 @@
+text /* Comment Type 1 */
+text // Comment Type 2
+text # Comment Type 3
+text ; Comment Type 4
+
+begin program.
+; Keywords
+    read obtain get                           ; Input
+    print display show                        ; Output
+    compute calculate determine               ; Compute
+    set initialize init let                   ; Initialize
+    increment bump decrement                  ; Add/Sub one
+    if then else otherwise                    ; If-Then-Else
+    while do endwhile done                    ; (Do) While
+    case of others endcase                    ; Case
+    repeat until                              ; Repeat Until
+    for endfor                                ; For
+    call exception when as recurse            ; Program Flow
+; Constants
+    true false                                ; Booleans
+    nonexistant unbound missing null          ; Unbound
+    success failure                           ; Status
+    newline beep indent                       ; Formatting
+; Data Types
+    number string character boolean           ; Basics
+    list array sequence                       ; Collections
+    nothing maybe symbol                      ; Abstractions
+    constant operator procedure               ; Programming
+    file stream pipe port                     ; OS
+    sum difference product quotient remainder ; Results
+; Operators
+    > < == != <> <= >= = !< !> ≡ ≯ ≮ ≥ ≤ ≠           ; Comparison
+    less than more than greater than          ; Comparison Words 1
+    equal to different than different from    ; Comparison Words 2
+    ^ * + - / % × ÷                           ; Arithmetic
+    plus minus times divided by modulo        ; Arithmetic Words 1
+    add subtract multiply divide              ; Arithmetic Words 2
+    take the remainder of to the power of     ; Artihmetic Words 3
+    power squared cubed root square cube      ; Arithmetic Words 4
+    ¬ ⊻ ∨ ∧                                   ; Logical
+    not xor and or exlusive                   ; Logical Words
+    <- -> -> <- → ←                               ; Arrows
+    resulting in fed right left               ; Arrows Words
+; Punctuation
+;; Singletons
+    ( ) , : { } [ ] ? . \
+;; Strings
+   'Single Quotes'
+   "Doublw Quotes"
+   "Contraction's Quotes"
+   'Nested "Quotations"'
+;; Numbers
+   525600
+   8675309
+   3.1415962
+   6.5*10^8
+   6.5e8
+   `1/2`
+   `1/3`
+   `1/4`
+   `5/8`
+   `5/6`
+   `4/5`
+   `1/8`
+   `1/5`
+   `1/2`
+   `1/4`
+   `1/6`
+   `1/3`
+   `7/8`
+   `3/8`
+   `3/5`
+   `3/4`
+   `2/5`
+   `2/3`
+   `phi`
+   `pi`
+   `14/56`
+   ; Named Functions
+;; Combinators
+    [Bluebird] [B] 
+    [Blackbird] [B1]
+    [Bunting] [B2]
+    [Becard] [B3]
+    [Cardinal] [C]
+    [Dove] [D]
+    [Dickcissel] [D1]
+    [Dovekies] [D2]
+    [Eagle] [E]
+    [Bald Eagle] [E1]
+    [Finch] [F]
+    [Goldfinch] [G]
+    [Hummingbird] [H]
+    [Identity Bird (aka Idiot)] [I]
+    [Jay] [J]
+    [Kestrel (True)] [K]
+    [Lark] [L]
+    [Mockingbird] [M]
+    [Double Mockingbird] [M2]
+    [Owl] [O]
+    [Queer Bird] [Q]
+    [Quixotic Bird] [Q1]
+    [Quizzical Bird] [Q2]
+    [Quirky Bird] [Q3]
+    [Quacky Bird] [Q4]
+    [Robin] [R]
+    [Starling] [S]
+    [Thrush] [T]
+    [Turing] [U]
+    [Vireo (aka Pairing)] [V]
+    [Warbler] [W]
+    [Converse Warbler] [W1]
+    [Why Bird (aka Sage Bird)] [Y]
+    [Identity Bird Once Removed] [I*]
+    [Warbler Once Removed] [W*]
+    [Cardinal Once Removed] [C*]
+    [Robin Once Removed] [R*]
+    [Finch Once Removed] [F*]
+    [Vireo Once Removed] [V*]
+    [Identity Bird Twice Removed] [I**]
+    [Warbler Twice Removed] [W**]
+    [Cardinal Twice Removed] [C**]
+    [Robin Twice Removed] [R**]
+    [Finch Twice Removed] [F**]
+    [Vireo Twice Removed] [V**]
+    [Kite (False)] [KI]
+    [Omega] [⍵]
+    [Konstant Mocker] [KM]
+    [Crossed Konstant Mocker] [C(KM)]
+    [Theta] [θ]
+end program.
