@@ -35,10 +35,10 @@ begin program.
     ^ * + - / % × ÷                           ; Arithmetic
     plus minus times divided by modulo        ; Arithmetic Words 1
     add subtract multiply divide              ; Arithmetic Words 2
-    take the remainder of to the power of     ; Artihmetic Words 3
+    take the remainder of raised to           ; Artihmetic Words 3
     power squared cubed root square cube      ; Arithmetic Words 4
     ¬ ⊻ ∨ ∧                                   ; Logical
-    not xor and or exlusive                   ; Logical Words
+    not xor and or exclusive                  ; Logical Words
     <- -> -> <- → ←                               ; Arrows
     resulting in fed right left               ; Arrows Words
 ; Punctuation
@@ -129,6 +129,14 @@ begin program.
     [Crossed Konstant Mocker] [C(KM)]
     [Theta] [θ]
 ; Edge Cases
-
+    print first name
+    print newline
+    print last name
+    print newline
+    print street address
+    print newline
+    print city
+    print newline
+    print zip code
     print newline
 end program.

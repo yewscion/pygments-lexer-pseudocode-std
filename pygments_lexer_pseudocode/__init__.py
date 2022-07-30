@@ -34,17 +34,17 @@ class PseudocodeLexer(RegexLexer):
     myDatatypes += 'file|stream|pipe|port|'                 # OS
     myDatatypes += 'sum|difference|product|quotient|remainder' # Results
     myOperators =  '>\s|<\s|==|!=|<>|<=|>=|=|!<|!>|≡|≯|≮|≥|≤|≠|' # Comparison
-    myOperators += 'less than|more than|greater than|'      # Comparison Words 1
-    myOperators += 'equal to|different than|different from|'# Comparison Words 2
+    myOperatorWords = 'less than|more than|greater than|'      # Comparison Words 1
+    myOperatorWords += 'equal to|different than|different from|'# Comparison Words 2
     myOperators += '¬|⊻|∨|∧|&&|\|\||'                               # Logical
-    myOperators += 'not|xor|and|or|exlusive|'               # Logical Words
+    myOperatorWords += 'not|xor|and|or|exclusive|'               # Logical Words
     myOperators += '->|<-|→|←|'                             # Arrows
-    myOperators += 'resulting in|fed|right|left|'            # Arrows Words
-    myOperators += '\^|\*|\+|-|\/|\%|×|÷|'                  # Arithmetic
-    myOperators += 'plus|minus|times|divided by|modulo|'    # Arithmetic Words 1
-    myOperators += 'add|subtract|multiply|divide|'          # Arithmetic Words 2
-    myOperators += 'take the remainder of|to the power of|' # Artihmetic Words 3
-    myOperators += 'power|squared|cubed|root|square|cube'  # Arithmetic Words 4
+    myOperatorWords += 'resulting in|fed|right|left|'            # Arrows Words
+    myOperators += '\^|\*|\+|-|\/|\%|×|÷'                  # Arithmetic
+    myOperatorWords += 'plus|minus|times|divided by|modulo|'    # Arithmetic Words 1
+    myOperatorWords += 'add|subtract|multiply|divide|'          # Arithmetic Words 2
+    myOperatorWords += 'take the remainder of|raised to the|' # Artihmetic Words 3
+    myOperatorWords += 'power|squared|cubed|root|square|cube'  # Arithmetic Words 4
     myPunctuation = '\(|\)|\,|:'                        # Basics
     myIntrinsics = '\[.*\S+.*\]\s'                                 # Brackets
     myComplexNumbers = '`.*\S.*`'
@@ -105,14 +105,18 @@ class PseudocodeLexer(RegexLexer):
                  # Data Types
                  (r'\b(' + myDatatypes + ')',
                   Keyword.Type),
-
+            
+                 # Constants
                  (r'\b('+ myConstants + ')',
                   Name.Constant),
 
                  # Operators
                  (r'(' + myOperators + ')',
                   op_replace),
-
+                 (r' +(' + myOperatorWords + ') +',
+                  Operator.Word),
+            
+                 # Punctuation
                  (r'(' + myPunctuation + ')',
                   Punctuation),
 
