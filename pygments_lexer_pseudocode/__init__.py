@@ -12,26 +12,29 @@ class PseudocodeLexer(RegexLexer):
     myComments = '\/\*.*\*\/|'                              # C Style Block
     myComments += '\/\/.*\n|#.*\n|'                         # C/Sh Style Line
     myComments += ';.*\n'                                   # Lisp Style Line
-    myKeywords = 'read|obtain|get|take|use|copy|'           # Input
+    myKeywords = 'read|obtain|get|from|take|use|copy|'      # Input
     myKeywords += 'print|display|show|save|return|'         # Output
     myKeywords += 'compute|calculate|determine|append|'     # Compute
-    myKeywords += 'set|initialize|init|let|to|'             # Initialize
+    myKeywords += 'set|initialize|init|let|is|'             # Initialize
     myKeywords += 'increment|bump|decrement|'               # Add/Sub one
-    myKeywords += 'if|then|else|otherwise|'                 # If-Then-Else
+    myKeywords += 'if|then|else|otherwise|when|unless|'     # If-Then-Else
     myKeywords += 'while|done|endwhile|do|'                 # (Do) While
     myKeywords += 'case|of|others|endcase|'                 # Case
     myKeywords += 'repeat|until|'                           # Repeat Until
     myKeywords += 'for|endfor|'                             # For
-    myKeywords += 'call|exception|when|as|recurse'          # Program Flow
+    myKeywords += 'call|exception|as|recurse|begin|end|'    # Program Flow
+    myKeywords += 'this|expecting|expect|that'              # Abstractions
     myConstants = 'true|false|'                             # Booleans
     myConstants += 'nonexistant|unbound|missing|null|'      # Unbound
     myConstants += 'success|failure|'                       # Status
-    myConstants += 'newline|beep|indent'                    # Formatting
+    myConstants += 'newline|beep|indent|'                   # Formatting
+    myConstants += 'user|screen|system'                     # Assumptions
     myDatatypes = 'number|string|character|boolean|'        # Basics
-    myDatatypes += 'list|array|sequence|'                   # Collections
-    myDatatypes += 'nothing|maybe|symbol|'                  # Abstractions
+    myDatatypes += 'truthy|falsey|'                          # Extended Boolean
+    myDatatypes += 'list|array|sequence|every|each|'        # Collections
+    myDatatypes += 'nothing|maybe|symbol|many|any|'         # Abstractions
     myDatatypes += 'constant|operator|procedure|'           # Program
-    myDatatypes += 'file|stream|pipe|port|'                 # OS
+    myDatatypes += 'file|stream|pipe|port|line|'            # OS
     myDatatypes += 'sum|difference|product|quotient|remainder' # Results
     myOperators =  '>\s|<\s|==|!=|<>|<=|>=|=|!<|!>|≡|≯|≮|≥|≤|≠|' # Comparison
     myOperatorWords = 'less than|more than|greater than|'      # Comparison Words 1
@@ -43,17 +46,17 @@ class PseudocodeLexer(RegexLexer):
     myOperators += '\^|\*|\+|-|\/|\%|×|÷'                  # Arithmetic
     myOperatorWords += 'plus|minus|times|divided by|modulo|'    # Arithmetic Words 1
     myOperatorWords += 'add|subtract|multiply|divide|'          # Arithmetic Words 2
-    myOperatorWords += 'take the remainder of|raised to the|' # Artihmetic Words 3
+    myOperatorWords += 'take the remainder of|raised to|' # Artihmetic Words 3
     myOperatorWords += 'power|squared|cubed|root|square|cube'  # Arithmetic Words 4
-    myPunctuation = '\(|\)|\,|:'                        # Basics
-    myIntrinsics = '\[.*\S+.*\]\s'                                 # Brackets
+    myPunctuation = '\(|\)|\,|:|\.'                        # Basics
+    myFunctions = '\[.*\S+.*\]\s'                                 # Brackets
+    myVariables = '[A-Z]\w*'
     myComplexNumbers = '`.*\S.*`'
     
     name = 'Pseudocode (std)'
     aliases = ['pseudocode', 'pseudo', 'algorithm', 'algo']
     filenames = ['*.algo', '*.pseudocode']
     mimetypes = []
-    flags = re.IGNORECASE
 
     def op_replace(lexer, match):
         """Replace ASCII digraphs with Unicode equivalents."""
@@ -74,10 +77,10 @@ class PseudocodeLexer(RegexLexer):
 
         S = ('`5/8`', '`5/6`', '`4/5`', '`1/8`', '`1/5`', '`1/2`', '`1/4`',
              '`1/6`', '`1/3`', '`7/8`', '`3/8`', '`3/5`', '`3/4`', '`2/5`',
-             '`2/3`', '`pi`', '`phi`')
+             '`2/3`', '`pi`', '`phi`', '`infinity`')
         R = ('⅝', '⅚', '⅘', '⅛', '⅕', '½', '¼',
              '⅙', '⅓', '⅞', '⅜', '⅗', '¾', '⅖',
-             '⅔', 'π', 'φ')
+             '⅔', 'π', 'φ', '∞')
 
         if num in S:
             num = R[S.index(num)]
@@ -92,18 +95,13 @@ class PseudocodeLexer(RegexLexer):
                  (r''+ myComments, Comment),
                  include('strings'),
                  include('core'),
-                 (r'(begin |end )(.+)',
-                  bygroups(Keyword, Name.Function)),
-                 (r'[a-zéàùçèÉÀÙÇÈ][a-z0-9éàùçèÉÀÙÇÈ_]*', Name.Variable),
-                 include('nums'),
-                 (r'[\s]+', Text),
-                 (r'\d+/\d+', Number)
+                 include('nums')
         ],
         'core': [  # Keywords
-                 (r'\b(' + myKeywords + ')', Keyword),
+                 (r'\b(' + myKeywords + ') ', Keyword),
 
                  # Data Types
-                 (r'\b(' + myDatatypes + ')',
+                 (r'\b(' + myDatatypes + ')(ish|esque|-like|s)?',
                   Keyword.Type),
             
                  # Constants
@@ -112,16 +110,17 @@ class PseudocodeLexer(RegexLexer):
 
                  # Operators
                  (r'(' + myOperators + ')',
-                  op_replace),
-                 (r' +(' + myOperatorWords + ') +',
+                   op_replace),
+                 (r'\s(' + myOperatorWords + ')\s',
                   Operator.Word),
             
                  # Punctuation
                  (r'(' + myPunctuation + ')',
                   Punctuation),
 
-                 # Intrinsics
-                 (r'' + myIntrinsics, Name.Builtin)
+                 # Functions
+                 (r'' + myFunctions, Name.Function),
+                 (r'' + myVariables, Name.Variable)
                 ],
 
         'strings': [
@@ -136,3 +135,4 @@ class PseudocodeLexer(RegexLexer):
                  (r'' + myComplexNumbers, num_replace)
                 ],
         }
+

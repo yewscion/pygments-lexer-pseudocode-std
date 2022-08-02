@@ -3,31 +3,35 @@ text // Comment Type 2
 text # Comment Type 3
 text ; Comment Type 4
 
-begin program.
+begin Program
 ; Keywords
-    read obtain get                           ; Input
-    print display show                        ; Output
-    compute calculate determine               ; Compute
-    set initialize init let                   ; Initialize
+    read obtain get from take use copy        ; Input
+    print display show save return            ; Output
+    compute calculate determine append        ; Compute
+    set initialize init let is                ; Initialize
     increment bump decrement                  ; Add/Sub one
-    if then else otherwise                    ; If-Then-Else
-    while do endwhile done                    ; (Do) While
+    if then else otherwise when unless        ; If-Then-Else
+    while done endwhile do                    ; (Do) While
     case of others endcase                    ; Case
     repeat until                              ; Repeat Until
     for endfor                                ; For
-    call exception when as recurse            ; Program Flow
+    call exception as recurse                 ; Program Flow
+    this expecting expect that                ; Abstractions
 ; Constants
     true false                                ; Booleans
     nonexistant unbound missing null          ; Unbound
     success failure                           ; Status
     newline beep indent                       ; Formatting
+    user screen system                        ; Assumptions
 ; Data Types
     number string character boolean           ; Basics
-    list array sequence                       ; Collections
-    nothing maybe symbol                      ; Abstractions
+    truthy falsey                             ; Extended Boolean
+    list array sequence every each            ; Collections
+    nothing maybe symbol many any             ; Abstractions
     constant operator procedure               ; Programming
-    file stream pipe port                     ; OS
+    file stream pipe port line                ; OS
     sum difference product quotient remainder ; Results
+    numberish symbolesque file-like lists           ; Suffixes
 ; Operators
     > < == != <> <= >= = !< !> ≡ ≯ ≮ ≥ ≤ ≠           ; Comparison
     less than more than greater than          ; Comparison Words 1
@@ -129,14 +133,19 @@ begin program.
     [Crossed Konstant Mocker] [C(KM)]
     [Theta] [θ]
 ; Edge Cases
-    print first name
-    print newline
-    print last name
-    print newline
-    print street address
-    print newline
-    print city
-    print newline
-    print zip code
-    print newline
-end program.
+begin Program.
+    print first name.
+    print newline.
+    print last name.
+    print newline.
+    print street address.
+    print newline.
+    print city.
+    print newline.
+    print zip code.
+    print newline.
+end Program.
+
+; Local Variables:
+; mode: pseudocode
+; End:
