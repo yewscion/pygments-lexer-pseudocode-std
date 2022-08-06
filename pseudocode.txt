@@ -8,7 +8,7 @@ begin Program
     read obtain get from take use copy        ; Input
     print display show save return            ; Output
     compute calculate determine append        ; Compute
-    set initialize init let is                ; Initialize
+    set initialize init let is has            ; Initialize
     increment bump decrement                  ; Add/Sub one
     if then else otherwise when unless        ; If-Then-Else
     while done endwhile do                    ; (Do) While
@@ -16,7 +16,8 @@ begin Program
     repeat until                              ; Repeat Until
     for endfor                                ; For
     call exception as recurse                 ; Program Flow
-    this expecting expect that                ; Abstractions
+    this that except in                       ; Selectors
+    convert cast ensure expecting expect      ; Type Ops
 ; Constants
     true false                                ; Booleans
     nonexistant unbound missing null          ; Unbound
@@ -29,9 +30,10 @@ begin Program
     list array sequence every each            ; Collections
     nothing maybe symbol many any             ; Abstractions
     constant operator procedure               ; Programming
-    file stream pipe port line                ; OS
+    file stream pipe port line interrupt      ; OS
     sum difference product quotient remainder ; Results
     numberish symbolesque file-like lists           ; Suffixes
+    value name result message field a         ; Programming Refs
 ; Operators
     > < == != <> <= >= = !< !> ≡ ≯ ≮ ≥ ≤ ≠           ; Comparison
     less than more than greater than          ; Comparison Words 1
@@ -80,72 +82,44 @@ begin Program
    `phi`
    `pi`
    `14/56`
-   ; Named Functions
-;; Combinators
-    [Bluebird] [B] 
-    [Blackbird] [B1]
-    [Bunting] [B2]
-    [Becard] [B3]
-    [Cardinal] [C]
-    [Dove] [D]
-    [Dickcissel] [D1]
-    [Dovekies] [D2]
-    [Eagle] [E]
-    [Bald Eagle] [E1]
-    [Finch] [F]
-    [Goldfinch] [G]
-    [Hummingbird] [H]
-    [Identity Bird (aka Idiot)] [I]
-    [Jay] [J]
-    [Kestrel (True)] [K]
-    [Lark] [L]
-    [Mockingbird] [M]
-    [Double Mockingbird] [M2]
-    [Owl] [O]
-    [Queer Bird] [Q]
-    [Quixotic Bird] [Q1]
-    [Quizzical Bird] [Q2]
-    [Quirky Bird] [Q3]
-    [Quacky Bird] [Q4]
-    [Robin] [R]
-    [Starling] [S]
-    [Thrush] [T]
-    [Turing] [U]
-    [Vireo (aka Pairing)] [V]
-    [Warbler] [W]
-    [Converse Warbler] [W1]
-    [Why Bird (aka Sage Bird)] [Y]
-    [Identity Bird Once Removed] [I*]
-    [Warbler Once Removed] [W*]
-    [Cardinal Once Removed] [C*]
-    [Robin Once Removed] [R*]
-    [Finch Once Removed] [F*]
-    [Vireo Once Removed] [V*]
-    [Identity Bird Twice Removed] [I**]
-    [Warbler Twice Removed] [W**]
-    [Cardinal Twice Removed] [C**]
-    [Robin Twice Removed] [R**]
-    [Finch Twice Removed] [F**]
-    [Vireo Twice Removed] [V**]
-    [Kite (False)] [KI]
-    [Omega] [⍵]
-    [Konstant Mocker] [KM]
-    [Crossed Konstant Mocker] [C(KM)]
-    [Theta] [θ]
+; Named Functions
+    [Bluebird] [B] [hello] [⌊]
 ; Edge Cases
 begin Program.
-    print first name.
-    print newline.
-    print last name.
-    print newline.
-    print street address.
-    print newline.
-    print city.
-    print newline.
-    print zip code.
-    print newline.
+      CarInfo has fields Brand, Model, Year, StartingOdometer,
+                   EndingOdometer, GallonsUsed, Distance, MPG.
+      begin Input.
+            for each CarInfo field except Distance, MPG:
+                   display this Prompt to user.
+                   get this Value from user as a string.
+            for each CarInfo field in
+                   StartingOdometer, EndingOdometer, GallonsUsed:
+                   convert this value to a number.
+      end Input.
+      begin Calculation.
+            let Distance = EndingOdometer - StartingOdometer.
+            let MPG as Distance / GallonsUsed.
+      end Calculation.
+      begin Display.
+            for each CarInfo field:
+                   let Entry = this name.
+                   append ": " to Entry.
+                   append this value to Entry.
+                   append newline to Entry.
+                   display Entry to user.
+            let Calculation = "(".
+            append CarInfo -> EndingOdometer to Calculation.
+            append "-" to Calculation.
+            append CarInfo -> StartingOdometer to Calculation.
+            append ") / " to Calculation.
+            append CarInfo -> GallonsUsed to Calculation.
+            append " = " to Calculation.
+            append CarInfo -> MPG to Calculation.
+            append newline to Calculation.
+            display Calculation to user.
+      end Display.
+            
 end Program.
-
 ; Local Variables:
 ; mode: pseudocode
 ; End:

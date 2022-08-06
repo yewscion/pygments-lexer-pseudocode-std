@@ -1,0 +1,1 @@
+python3 -m pygments -x -l ~/Documents/pygments-lexer-pseudocode-std/pygments_lexer_pseudocode/__init__.py:PseudocodeLexer -O style=rrt ~/Documents/pygments-lexer-pseudocode-std/pseudocode.txt

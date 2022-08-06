@@ -5,61 +5,141 @@ from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Punctuation, Text, Comment, \
     Operator, Keyword, Name, String, Number
 
-
 class PseudocodeLexer(RegexLexer):
     """Lex our Pseudocode According to the Standard."""
+    # Comments
+    # -----------------------------------------------------------------------
+    ## C Style Block
+    myComments = '\/\*.*\*\/|'
+    ## C/Sh Style Line
+    myComments += '\/\/.*\n|#.*\n|'
+    ## Lisp Style Line
+    myComments += ';.*\n'
+    # -----------------------------------------------------------------------
 
-    myComments = '\/\*.*\*\/|'                              # C Style Block
-    myComments += '\/\/.*\n|#.*\n|'                         # C/Sh Style Line
-    myComments += ';.*\n'                                   # Lisp Style Line
-    myKeywords = 'read|obtain|get|from|take|use|copy|'      # Input
-    myKeywords += 'print|display|show|save|return|'         # Output
-    myKeywords += 'compute|calculate|determine|append|'     # Compute
-    myKeywords += 'set|initialize|init|let|is|'             # Initialize
-    myKeywords += 'increment|bump|decrement|'               # Add/Sub one
-    myKeywords += 'if|then|else|otherwise|when|unless|'     # If-Then-Else
-    myKeywords += 'while|done|endwhile|do|'                 # (Do) While
-    myKeywords += 'case|of|others|endcase|'                 # Case
-    myKeywords += 'repeat|until|'                           # Repeat Until
-    myKeywords += 'for|endfor|'                             # For
-    myKeywords += 'call|exception|as|recurse|begin|end|'    # Program Flow
-    myKeywords += 'this|expecting|expect|that'              # Abstractions
-    myConstants = 'true|false|'                             # Booleans
-    myConstants += 'nonexistant|unbound|missing|null|'      # Unbound
-    myConstants += 'success|failure|'                       # Status
-    myConstants += 'newline|beep|indent|'                   # Formatting
-    myConstants += 'user|screen|system'                     # Assumptions
-    myDatatypes = 'number|string|character|boolean|'        # Basics
-    myDatatypes += 'truthy|falsey|'                          # Extended Boolean
-    myDatatypes += 'list|array|sequence|every|each|'        # Collections
-    myDatatypes += 'nothing|maybe|symbol|many|any|'         # Abstractions
-    myDatatypes += 'constant|operator|procedure|'           # Program
-    myDatatypes += 'file|stream|pipe|port|line|'            # OS
-    myDatatypes += 'sum|difference|product|quotient|remainder' # Results
-    myOperators =  '>\s|<\s|==|!=|<>|<=|>=|=|!<|!>|≡|≯|≮|≥|≤|≠|' # Comparison
-    myOperatorWords = 'less than|more than|greater than|'      # Comparison Words 1
-    myOperatorWords += 'equal to|different than|different from|'# Comparison Words 2
-    myOperators += '¬|⊻|∨|∧|&&|\|\||'                               # Logical
-    myOperatorWords += 'not|xor|and|or|exclusive|'               # Logical Words
-    myOperators += '->|<-|→|←|'                             # Arrows
-    myOperatorWords += 'resulting in|fed|right|left|'            # Arrows Words
-    myOperators += '\^|\*|\+|-|\/|\%|×|÷'                  # Arithmetic
-    myOperatorWords += 'plus|minus|times|divided by|modulo|'    # Arithmetic Words 1
-    myOperatorWords += 'add|subtract|multiply|divide|'          # Arithmetic Words 2
-    myOperatorWords += 'take the remainder of|raised to|' # Artihmetic Words 3
-    myOperatorWords += 'power|squared|cubed|root|square|cube'  # Arithmetic Words 4
-    myPunctuation = '\(|\)|\,|:|\.'                        # Basics
-    myFunctions = '\[.*\S+.*\]\s'                                 # Brackets
+    # Keywords
+    # -----------------------------------------------------------------------
+    ## Input
+    myKeywords = 'read|obtain|get|from|take|use|copy|'
+    ## Output
+    myKeywords += 'print|display|show|save|return|'
+    ## Compute
+    myKeywords += 'compute|calculate|determine|append|to|'
+    ## Initialize
+    myKeywords += 'set|initialize|init|let|is|has|'
+    ## Add/Sub one
+    myKeywords += 'increment|bump|decrement|'
+    ## If-Then-Else
+    myKeywords += 'if|then|else|otherwise|when|unless|'
+    ## (Do) While
+    myKeywords += 'while|done|endwhile|do|'
+    ## Case
+    myKeywords += 'case|of|others|endcase|'
+    ## Repeat Until
+    myKeywords += 'repeat|until|'
+    ## For
+    myKeywords += 'for|endfor|'
+    ## Program Flow
+    myKeywords += 'call|exception|as|recurse|begin|end|'
+    ## Abstractions
+    myKeywords += 'this|that|except|in|'
+    ## Type Ops
+    myKeywords += 'convert|cast|ensure|expecting|expect'
+    # -----------------------------------------------------------------------
+
+    # Constants
+    # -----------------------------------------------------------------------
+    ## Booleans
+    myConstants = 'true|false|'
+    ## Unbound
+    myConstants += 'nonexistant|unbound|missing|null|'
+    ## Status
+    myConstants += 'success|failure|'
+    ## Formatting
+    myConstants += 'newline|beep|indent|'
+    ## Assumptions
+    myConstants += 'user|screen|system'
+    # -----------------------------------------------------------------------
+
+    # Datatypes
+    # -----------------------------------------------------------------------
+    ## Basics
+    myDatatypes = 'number|string|character|boolean|'
+    ## Extended Boolean
+    myDatatypes += 'truthy|falsey|'
+    ## Collections
+    myDatatypes += 'list|array|sequence|every|each|'
+    ## Abstractions
+    myDatatypes += 'nothing|maybe|symbol|many|any|'
+    ## Program
+    myDatatypes += 'constant|operator|procedure|'
+    ## OS
+    myDatatypes += 'file|stream|pipe|port|line|interrupt|'
+    ## Results
+    myDatatypes += 'sum|difference|product|quotient|remainder|'
+    ## References
+    myDatatypes += 'value|name|result|message|field|a'
+    # -----------------------------------------------------------------------
+
+    # Operator Symbols
+    # -----------------------------------------------------------------------
+    ## Comparison
+    myOperators =  '>\s|<\s|==|!=|<>|<=|>=|=|!<|!>|≡|≯|≮|≥|≤|≠|'
+    ## Logical
+    myOperators += '¬|⊻|∨|∧|&&|\|\||'
+    ## Arrows
+    myOperators += '->|<-|→|←|'
+    ## Arithmetic
+    myOperators += '\^|\*|\+|-|\/|\%|×|÷'
+    # -----------------------------------------------------------------------
+
+    # Operator Words
+    # -----------------------------------------------------------------------
+    ## Comparison Words 1
+    myOperatorWords = 'less than|more than|greater than|'
+    ## Comparison Words 2
+    myOperatorWords += 'equal to|different than|different from|'
+    ## Logical Words
+    myOperatorWords += 'not|xor|and|or|exclusive|'
+    ## Arrows Words
+    myOperatorWords += 'resulting in|fed|right|left'
+    ## Arithmetic Words 1
+    myOperatorWords += 'plus|minus|times|divided by|modulo|'
+    ## Arithmetic Words 2
+    myOperatorWords += 'add|subtract|multiply|divide|'
+    ## Artihmetic Words 3
+    myOperatorWords += 'take the remainder of|raised to|'
+    ## Arithmetic Words 4
+    myOperatorWords += 'power|squared|cubed|root|square|cube'
+    # -----------------------------------------------------------------------
+
+    # Misc
+    # -----------------------------------------------------------------------
+    ## Basics
+    myPunctuation = '[(),:.?] '
+    ## Brackets
+    myFunctions = '\[.*\S+.*\]\s'
+    ## Capital Initial
     myVariables = '[A-Z]\w*'
+    ## Scientific Notation
     myComplexNumbers = '`.*\S.*`'
-    
+    ## End of Token Indicators
+    endOfToken = '(?= |\.|\n|:|,)'
+    # -----------------------------------------------------------------------
+
+    # Metadata
+    # -----------------------------------------------------------------------
     name = 'Pseudocode (std)'
     aliases = ['pseudocode', 'pseudo', 'algorithm', 'algo']
     filenames = ['*.algo', '*.pseudocode']
     mimetypes = []
+    # -----------------------------------------------------------------------
 
+    # Helper Functions
+    # -----------------------------------------------------------------------
+    ## Operator Replace
     def op_replace(lexer, match):
-        """Replace ASCII digraphs with Unicode equivalents."""
+        """Replace ASCII operators with Unicode equivalents."""
         op = match.group(0)
 
         S = ('<=', '>=', '<>', '!=', '==', '->', '<-', '*', '/', '!<', '!>',
@@ -70,7 +150,7 @@ class PseudocodeLexer(RegexLexer):
             op = R[S.index(op)]
 
         yield match.start(), Operator, op
-
+    ## Number Replace
     def num_replace(lexer, match):
         """Replace complex numbers with Unicode equivalents."""
         num = match.group(0)
@@ -88,51 +168,56 @@ class PseudocodeLexer(RegexLexer):
             num = num.replace('`', '')
 
         yield match.start(), Number, num
-       
+    # -----------------------------------------------------------------------
 
+    # Token Assignment
+    # -----------------------------------------------------------------------
     tokens = {
         'root': [
-                 (r''+ myComments, Comment),
-                 include('strings'),
-                 include('core'),
-                 include('nums')
+            ## Comments
+            (r''+ myComments, Comment),
+            ## Submodules
+            include('strings'),
+            include('core'),
+            include('nums')
         ],
-        'core': [  # Keywords
-                 (r'\b(' + myKeywords + ') ', Keyword),
+        'core': [## Op Words
+                 (r'\s(' + myOperatorWords + ')' + endOfToken,
+                  Operator.Word),
+                 ## Keywords
+                 (r'\b(' + myKeywords + ')' + endOfToken, Keyword),
 
-                 # Data Types
-                 (r'\b(' + myDatatypes + ')(ish|esque|-like|s)?',
+                 ## Data Types
+                 (r'\b(' + myDatatypes +
+                  ')(ish|esque|-like|s)?' + endOfToken,
                   Keyword.Type),
-            
-                 # Constants
-                 (r'\b('+ myConstants + ')',
+
+                 ## Constants
+                 (r'\b('+ myConstants + ')' + endOfToken,
                   Name.Constant),
 
-                 # Operators
+                 ## Op Symbols
                  (r'(' + myOperators + ')',
-                   op_replace),
-                 (r'\s(' + myOperatorWords + ')\s',
-                  Operator.Word),
-            
-                 # Punctuation
+                  op_replace),
+
+                 ## Punctuation
                  (r'(' + myPunctuation + ')',
                   Punctuation),
 
-                 # Functions
+                 ## Names
                  (r'' + myFunctions, Name.Function),
                  (r'' + myVariables, Name.Variable)
-                ],
-
+        ],
+        ## Strings
         'strings': [
-                 (r'"([^"])*"', String.Double),
-                 (r"'([^'])*'", String.Single),
-                ],
-
+            (r'"([^"])*"', String.Double),
+            (r"'([^'])*'", String.Single),
+        ],
+        ## Numbers
         'nums': [
-                 (r'\d+(?![.Ee])', Number.Integer),
-                 (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
-                 (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
-                 (r'' + myComplexNumbers, num_replace)
-                ],
-        }
-
+            (r'\d+(?![.Ee])', Number.Integer),
+            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
+            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+            (r'' + myComplexNumbers, num_replace)
+        ],
+    }
