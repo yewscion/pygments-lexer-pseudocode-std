@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>  <link rel="stylesheet" href="emacs.css" /> </head>
+<body>
+<div class="highlight"><pre><span></span>text <span class="c">/* Comment Type 1 */</span>
+text <span class="c">// Comment Type 2</span>
+text <span class="c"># Comment Type 3</span>
+text <span class="c">; Comment Type 4</span>
+
+<span class="k">begin</span> <span class="nv">Program</span>
+<span class="c">; Keywords</span>
+    <span class="k">read</span> <span class="k">obtain</span> <span class="k">get</span> <span class="k">from</span> <span class="k">take</span> <span class="k">use</span> <span class="k">copy</span>        <span class="c">; Input</span>
+    <span class="k">print</span> <span class="k">display</span> <span class="k">show</span> <span class="k">save</span> <span class="k">return</span>            <span class="c">; Output</span>
+    <span class="k">compute</span> <span class="k">calculate</span> <span class="k">determine</span> <span class="k">append</span>        <span class="c">; Compute</span>
+    <span class="k">set</span> <span class="k">initialize</span> <span class="k">init</span> <span class="k">let</span> <span class="k">is</span> <span class="k">has</span>            <span class="c">; Initialize</span>
+    <span class="k">increment</span> <span class="k">bump</span> <span class="k">decrement</span>                  <span class="c">; Add/Sub one</span>
+    <span class="k">if</span> <span class="k">then</span> <span class="k">else</span> <span class="k">otherwise</span> <span class="k">when</span> <span class="k">unless</span>        <span class="c">; If-Then-Else</span>
+    <span class="k">while</span> <span class="k">done</span> <span class="k">endwhile</span> <span class="k">do</span>                    <span class="c">; (Do) While</span>
+    <span class="k">case</span> <span class="k">of</span> <span class="k">others</span> <span class="k">endcase</span>                    <span class="c">; Case</span>
+    <span class="k">repeat</span> <span class="k">until</span>                              <span class="c">; Repeat Until</span>
+    <span class="k">for</span> <span class="k">endfor</span>                                <span class="c">; For</span>
+    <span class="k">call</span> <span class="k">exception</span> <span class="k">as</span> <span class="k">recurse</span>                 <span class="c">; Program Flow</span>
+    <span class="k">this</span> <span class="k">that</span> <span class="k">except</span> <span class="k">in</span>                       <span class="c">; Selectors</span>
+    <span class="k">convert</span> <span class="k">cast</span> <span class="k">ensure</span> <span class="k">expecting</span> <span class="k">expect</span>      <span class="c">; Type Ops</span>
+<span class="c">; Constants</span>
+    <span class="no">true</span> <span class="no">false</span>                                <span class="c">; Booleans</span>
+    <span class="no">nonexistant</span> <span class="no">unbound</span> <span class="no">missing</span> <span class="no">null</span>          <span class="c">; Unbound</span>
+    <span class="no">success</span> <span class="no">failure</span>                           <span class="c">; Status</span>
+    <span class="no">newline</span> <span class="no">beep</span> <span class="no">indent</span>                       <span class="c">; Formatting</span>
+    <span class="no">user</span> <span class="no">screen</span> <span class="no">system</span>                        <span class="c">; Assumptions</span>
+<span class="c">; Data Types</span>
+    <span class="kt">number</span> <span class="kt">string</span> <span class="kt">character</span> <span class="kt">boolean</span>           <span class="c">; Basics</span>
+    <span class="kt">truthy</span> <span class="kt">falsey</span>                             <span class="c">; Extended Boolean</span>
+    <span class="kt">list</span> <span class="kt">array</span> <span class="kt">sequence</span> <span class="kt">every</span> <span class="kt">each</span>            <span class="c">; Collections</span>
+    <span class="kt">nothing</span> <span class="kt">maybe</span> <span class="kt">symbol</span> <span class="kt">many</span> <span class="kt">any</span>             <span class="c">; Abstractions</span>
+    <span class="kt">constant</span> <span class="kt">operator</span> <span class="kt">procedure</span>               <span class="c">; Programming</span>
+    <span class="kt">file</span> <span class="kt">stream</span> <span class="kt">pipe</span> <span class="kt">port</span> <span class="kt">line</span> <span class="kt">interrupt</span>      <span class="c">; OS</span>
+    <span class="kt">sum</span> <span class="kt">difference</span> <span class="kt">product</span> <span class="kt">quotient</span> <span class="kt">remainder</span> <span class="c">; Results</span>
+    <span class="kt">numberish</span> <span class="kt">symbolesque</span> <span class="kt">file-like</span> <span class="kt">lists</span>           <span class="c">; Suffixes</span>
+    <span class="kt">value</span> <span class="kt">name</span> <span class="kt">result</span> <span class="kt">message</span> <span class="kt">field</span> <span class="kt">a</span>         <span class="c">; Programming Refs</span>
+<span class="c">; Operators</span>
+    <span class="o">&gt; &lt; ≡</span> <span class="o">≠</span> <span class="o">≠</span> <span class="o">≤</span> <span class="o">≥</span> <span class="o">=</span> <span class="o">≮</span> <span class="o">≯</span> <span class="o">≡</span> <span class="o">≯</span> <span class="o">≮</span> <span class="o">≥</span> <span class="o">≤</span> <span class="o">≠</span>           <span class="c">; Comparison</span>
+<span class="ow">    less than more than greater than</span>          <span class="c">; Comparison Words 1</span>
+<span class="ow">    equal to different than different from</span>    <span class="c">; Comparison Words 2</span>
+    <span class="o">^</span> <span class="o">×</span> <span class="o">+</span> <span class="o">-</span> <span class="o">÷</span> <span class="o">%</span> <span class="o">×</span> <span class="o">÷</span>                           <span class="c">; Arithmetic</span>
+<span class="ow">    plus minus times divided by modulo</span>        <span class="c">; Arithmetic Words 1</span>
+<span class="ow">    add subtract multiply divide</span>              <span class="c">; Arithmetic Words 2</span>
+<span class="ow">    take the remainder of raised to</span>           <span class="c">; Artihmetic Words 3</span>
+<span class="ow">    power squared cubed root square cube</span>      <span class="c">; Arithmetic Words 4</span>
+    <span class="o">¬</span> <span class="o">⊻</span> <span class="o">∨</span> <span class="o">∧</span>                                   <span class="c">; Logical</span>
+<span class="ow">    not xor and or exclusive</span>                  <span class="c">; Logical Words</span>
+    <span class="o">←</span> <span class="o">→</span> <span class="o">→</span> <span class="o">←</span> <span class="o">→</span> <span class="o">←</span>                               <span class="c">; Arrows</span>
+<span class="ow">    resulting in fed right left</span>               <span class="c">; Arrows Words</span>
+<span class="c">; Punctuation</span>
+<span class="c">;; Singletons</span>
+    <span class="p">(</span> <span class="p">)</span> <span class="p">,</span> <span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">[</span> <span class="p">]</span> <span class="p">?</span> <span class="p">.</span> <span class="p">\</span>
+<span class="c">;; Strings</span>
+   <span class="s1">&#39;Single Quotes&#39;</span>
+   <span class="s2">&quot;Doublw Quotes&quot;</span>
+   <span class="s2">&quot;Contraction&#39;s Quotes&quot;</span>
+   <span class="s1">&#39;Nested &quot;Quotations&quot;&#39;</span>
+<span class="c">;; Numbers</span>
+   <span class="mi">525600</span>
+   <span class="mi">8675309</span>
+   <span class="mf">3.1415962</span>
+   <span class="mf">6.5</span><span class="o">×</span><span class="mi">10</span><span class="o">^</span><span class="mi">8</span>
+   <span class="mf">6.5e8</span>
+   <span class="m">½</span>
+   <span class="m">⅓</span>
+   <span class="m">¼</span>
+   <span class="m">⅝</span>
+   <span class="m">⅚</span>
+   <span class="m">⅘</span>
+   <span class="m">⅛</span>
+   <span class="m">⅕</span>
+   <span class="m">½</span>
+   <span class="m">¼</span>
+   <span class="m">⅙</span>
+   <span class="m">⅓</span>
+   <span class="m">⅞</span>
+   <span class="m">⅜</span>
+   <span class="m">⅗</span>
+   <span class="m">¾</span>
+   <span class="m">⅖</span>
+   <span class="m">⅔</span>
+   <span class="m">φ</span>
+   <span class="m">π</span>
+   <span class="m">14/56</span>
+<span class="c">; Named Functions</span>
+    <span class="nf">[Bluebird] [B] [hello] [⌊]</span>
+<span class="c">; Edge Cases</span>
+<span class="k">begin</span> <span class="nv">Program</span><span class="p">.</span>
+      <span class="nv">CarInfo</span> <span class="k">has</span> <span class="kt">fields</span> <span class="nv">Brand</span><span class="p">,</span> <span class="nv">Model</span><span class="p">,</span> <span class="nv">Year</span><span class="p">,</span> <span class="nv">StartingOdometer</span><span class="p">,</span>
+                   <span class="nv">EndingOdometer</span><span class="p">,</span> <span class="nv">GallonsUsed</span><span class="p">,</span> <span class="nv">Distance</span><span class="p">,</span> <span class="nv">MPG</span><span class="p">.</span>
+      <span class="k">begin</span> <span class="nv">Input</span><span class="p">.</span>
+            <span class="k">for</span> <span class="kt">each</span> <span class="nv">CarInfo</span> <span class="kt">field</span> <span class="k">except</span> <span class="nv">Distance</span><span class="p">,</span> <span class="nv">MPG</span><span class="p">:</span>
+                   <span class="k">display</span> <span class="k">this</span> <span class="nv">Prompt</span> <span class="k">to</span> <span class="no">user</span><span class="p">.</span>
+                   <span class="k">get</span> <span class="k">this</span> <span class="nv">Value</span> <span class="k">from</span> <span class="no">user</span> <span class="k">as</span> <span class="kt">a</span> <span class="kt">string</span><span class="p">.</span>
+            <span class="k">for</span> <span class="kt">each</span> <span class="nv">CarInfo</span> <span class="kt">field</span> <span class="k">in</span>
+                   <span class="nv">StartingOdometer</span><span class="p">,</span> <span class="nv">EndingOdometer</span><span class="p">,</span> <span class="nv">GallonsUsed</span><span class="p">:</span>
+                   <span class="k">convert</span> <span class="k">this</span> <span class="kt">value</span> <span class="k">to</span> <span class="kt">a</span> <span class="kt">number</span><span class="p">.</span>
+      <span class="k">end</span> <span class="nv">Input</span><span class="p">.</span>
+      <span class="k">begin</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">let</span> <span class="nv">Distance</span> <span class="o">=</span> <span class="nv">EndingOdometer</span> <span class="o">-</span> <span class="nv">StartingOdometer</span><span class="p">.</span>
+            <span class="k">let</span> <span class="nv">MPG</span> <span class="k">as</span> <span class="nv">Distance</span> <span class="o">÷</span> <span class="nv">GallonsUsed</span><span class="p">.</span>
+      <span class="k">end</span> <span class="nv">Calculation</span><span class="p">.</span>
+      <span class="k">begin</span> <span class="nv">Display</span><span class="p">.</span>
+            <span class="k">for</span> <span class="kt">each</span> <span class="nv">CarInfo</span> <span class="kt">field</span><span class="p">:</span>
+                   <span class="k">let</span> <span class="nv">Entry</span> <span class="o">=</span> <span class="k">this</span> <span class="kt">name</span><span class="p">.</span>
+                   <span class="k">append</span> <span class="s2">&quot;: &quot;</span> <span class="k">to</span> <span class="nv">Entry</span><span class="p">.</span>
+                   <span class="k">append</span> <span class="k">this</span> <span class="kt">value</span> <span class="k">to</span> <span class="nv">Entry</span><span class="p">.</span>
+                   <span class="k">append</span> <span class="no">newline</span> <span class="k">to</span> <span class="nv">Entry</span><span class="p">.</span>
+                   <span class="k">display</span> <span class="nv">Entry</span> <span class="k">to</span> <span class="no">user</span><span class="p">.</span>
+            <span class="k">let</span> <span class="nv">Calculation</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span><span class="p">.</span>
+            <span class="k">append</span> <span class="nv">CarInfo</span> <span class="o">→</span> <span class="nv">EndingOdometer</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="s2">&quot;-&quot;</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="nv">CarInfo</span> <span class="o">→</span> <span class="nv">StartingOdometer</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="s2">&quot;) / &quot;</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="nv">CarInfo</span> <span class="o">→</span> <span class="nv">GallonsUsed</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="s2">&quot; = &quot;</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="nv">CarInfo</span> <span class="o">→</span> <span class="nv">MPG</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">append</span> <span class="no">newline</span> <span class="k">to</span> <span class="nv">Calculation</span><span class="p">.</span>
+            <span class="k">display</span> <span class="nv">Calculation</span> <span class="k">to</span> <span class="no">user</span><span class="p">.</span>
+      <span class="k">end</span> <span class="nv">Display</span><span class="p">.</span>
+            
+<span class="k">end</span> <span class="nv">Program</span><span class="p">.</span>
+<span class="c">; Local Variables:</span>
+<span class="c">; mode: pseudocode</span>
+<span class="c">; End:</span>
+</pre></div>

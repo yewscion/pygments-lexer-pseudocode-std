@@ -5,7 +5,7 @@ from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Punctuation, Text, Comment, \
     Operator, Keyword, Name, String, Number
 
-class PseudocodeLexer(RegexLexer):
+class PseudotaxusLexer(RegexLexer):
     """Lex our Pseudocode According to the Standard."""
     # Comments
     # -----------------------------------------------------------------------
@@ -102,7 +102,7 @@ class PseudocodeLexer(RegexLexer):
     ## Logical Words
     myOperatorWords += 'not|xor|and|or|exclusive|'
     ## Arrows Words
-    myOperatorWords += 'resulting in|fed|right|left'
+    myOperatorWords += 'resulting in|fed|right|left|'
     ## Arithmetic Words 1
     myOperatorWords += 'plus|minus|times|divided by|modulo|'
     ## Arithmetic Words 2
@@ -116,7 +116,7 @@ class PseudocodeLexer(RegexLexer):
     # Misc
     # -----------------------------------------------------------------------
     ## Basics
-    myPunctuation = '[(),:.?] '
+    myPunctuation = '[(),:.?[\]{}\\\\]'
     ## Brackets
     myFunctions = '\[.*\S+.*\]\s'
     ## Capital Initial
@@ -125,6 +125,8 @@ class PseudocodeLexer(RegexLexer):
     myComplexNumbers = '`.*\S.*`'
     ## End of Token Indicators
     endOfToken = '(?= |\.|\n|:|,)'
+    ## Normal Text, unhighlighted
+    myText = '( +)|[a-z]\w*'
     # -----------------------------------------------------------------------
 
     # Metadata
@@ -182,7 +184,7 @@ class PseudocodeLexer(RegexLexer):
             include('nums')
         ],
         'core': [## Op Words
-                 (r'\s(' + myOperatorWords + ')' + endOfToken,
+                 (r'\s+(' + myOperatorWords + ')' + endOfToken,
                   Operator.Word),
                  ## Keywords
                  (r'\b(' + myKeywords + ')' + endOfToken, Keyword),
@@ -200,13 +202,15 @@ class PseudocodeLexer(RegexLexer):
                  (r'(' + myOperators + ')',
                   op_replace),
 
-                 ## Punctuation
-                 (r'(' + myPunctuation + ')',
-                  Punctuation),
 
                  ## Names
                  (r'' + myFunctions, Name.Function),
-                 (r'' + myVariables, Name.Variable)
+                 (r'' + myVariables, Name.Variable),
+                 ## Punctuation
+                 (r'(' + myPunctuation + ')',
+                  Punctuation),
+                 (r'(' + myText + ')',
+                  Text)
         ],
         ## Strings
         'strings': [
