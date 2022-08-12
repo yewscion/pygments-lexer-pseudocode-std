@@ -131,7 +131,7 @@ class PseudotaxusLexer(RegexLexer):
 
     # Metadata
     # -----------------------------------------------------------------------
-    name = 'Pseudocode (std)'
+    name = 'Pseudotaxus Pseudocode'
     aliases = ['pseudocode', 'pseudo', 'algorithm', 'algo']
     filenames = ['*.algo', '*.pseudocode']
     mimetypes = []
