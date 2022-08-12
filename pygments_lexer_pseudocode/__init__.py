@@ -1,4 +1,4 @@
-"""Lexer for (Standardized) Pseudocode in Pygments."""
+"""Lexer for Pseudotaxus Pseudocode in Pygments."""
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups

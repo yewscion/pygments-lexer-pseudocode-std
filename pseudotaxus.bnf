@@ -1,0 +1,6 @@
+<statement> -> <keyword> <function>.
+<keyword> -> <input_keyword> | <output_keyword> | <compute_keyword> |
+             <initialize_keyword> | <deviation_keyword> | <branching_keyword> |
+             <while_keyword> | <case_keyword> | <repeat_keyword> |
+             <for_keyword> | <flow_keyword> | <selector_keyword> | <type_keyword>
+             

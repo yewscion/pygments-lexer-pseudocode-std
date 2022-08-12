@@ -1,20 +1,17 @@
 from setuptools import setup
 
 setup(
-    name="pygments-lexer-pseudocode",
-    packages=["pygments_lexer_pseudocode"],
+    name="pygments-lexer-pseudotaxus",
+    packages=["pygments_lexer_pseudotaxus"],
     version="2.0.1",
-    description="Pygments Lexer for a french pseudocode",
+    description="Pygments Lexer for Pseudotaxus Pseudocode",
     author="Simon Wachter",
-    author_email="simon@wachter.me",
-    url="https://github.com/svvac/pseudocode-pygments-lexer",
-    license="MIT",
-    entry_points="[pygments.lexers]\npseudocodelexer = pygments_lexer_pseudocode:PseudocodeLexer",
+    author_email="yewscion@gmail.com",
+    url="https://git.sr.ht/~yewscion/pygments-lexer-pseudocode-std",
+    license="AGPL3",
+    entry_points="[pygments.lexers]\npseudotaxuslexer = pygments_lexer_pseudocode:PseudotaxusLexer",
     install_requires=[ "pygments" ],
     classifiers=[
-        "Development Status :: 4 - Beta",
-        "License :: OSI Approved :: MIT License",
-        "Natural Language :: French",
         "Topic :: Text Processing",
         "Topic :: Utilities",
     ]
