@@ -24,9 +24,9 @@ class PseudotaxusLexer(RegexLexer):
     ## Output
     myKeywords += 'print|display|show|save|return|'
     ## Compute
-    myKeywords += 'compute|calculate|determine|append|to|'
+    myKeywords += 'compute|calculate|determine|append|to|over|'
     ## Initialize
-    myKeywords += 'set|initialize|init|let|is|has|'
+    myKeywords += 'set|initialize|init|let|is|has|contains|'
     ## Add/Sub one
     myKeywords += 'increment|bump|decrement|'
     ## If-Then-Else
@@ -42,7 +42,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Program Flow
     myKeywords += 'call|exception|as|recurse|begin|end|'
     ## Abstractions
-    myKeywords += 'this|that|except|in|'
+    myKeywords += 'this|that|except|in|at|'
     ## Type Ops
     myKeywords += 'convert|cast|ensure|expecting|expect'
     # -----------------------------------------------------------------------
@@ -54,7 +54,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Unbound
     myConstants += 'nonexistant|unbound|missing|null|'
     ## Status
-    myConstants += 'success|failure|'
+    myConstants += 'success|failure|succeeds|fails|found|'
     ## Formatting
     myConstants += 'newline|beep|indent|'
     ## Assumptions
@@ -68,19 +68,32 @@ class PseudotaxusLexer(RegexLexer):
     ## Extended Boolean
     myDatatypes += 'truthy|falsey|'
     ## Collections
-    myDatatypes += 'list|array|sequence|every|each|'
+    myDatatypes += 'list|array|sequence|every|each|member|index|'
     ## Abstractions
     myDatatypes += 'nothing|maybe|symbol|many|any|'
     ## Program
-    myDatatypes += 'constant|operator|procedure|'
+    myDatatypes += 'constant|operator|procedure|argument|parameter|'
     ## OS
     myDatatypes += 'file|stream|pipe|port|line|interrupt|'
-    ## Results
-    myDatatypes += 'sum|difference|product|quotient|remainder|'
     ## References
-    myDatatypes += 'value|name|result|message|field|a'
+    myDatatypes += 'value|name|result|message|field|an|a|the'
     # -----------------------------------------------------------------------
 
+    # Algorithms
+    # -----------------------------------------------------------------------
+    ## Arithmetic
+    myAlgorithms = 'sum|difference|product|quotient|remainder|modulus|'
+    myAlgorithms += 'sign|reciprocal|magnitude|logarithm|'
+    ## Statistics
+    myAlgorithms += 'average|mean|median|mode|range|'
+    ## Extrema
+    myAlgorithms += 'max|maximum|min|minimum|maxima|minima|ceiling|floor|'
+    ## Search Sort Filter
+    myAlgorithms += 'sort|reverse|search|find|filter in|filter out|'
+    ## Grade Scan Map Reduce
+    myAlgorithms += 'grade up|grade down|scan|map|reduce|expand|replicate'
+    
+    
     # Operator Symbols
     # -----------------------------------------------------------------------
     ## Comparison
@@ -123,6 +136,24 @@ class PseudotaxusLexer(RegexLexer):
     myVariables = '[A-Z]\w*'
     ## Scientific Notation
     myComplexNumbers = '`.*\S.*`'
+    ## Ordinals
+    myOrdinals = '\d(?:th|st|nd|rd|d)'
+    ## Ordinal Words
+    myOrdinalWords = 'first|second|third|fourth|fifth|sixth|seventh|eighth|'
+    myOrdinalWords += 'ninth|tenth|eleventh|twelfth|thirteenth|fourteenth|'
+    myOrdinalWords += 'fifteenth|sixteenth|seventeenth|eighteenth|nineteenth|'
+    myOrdinalWords += 'twentieth|thirtieth|fortieth|fiftieth|sixtieth|'
+    myOrdinalWords += 'seventieth|eightieth|nintieth|hundreth|thousandth|'
+    myOrdinalWords += 'millionth|billionth|trillionth|quadrillionth|'
+    myOrdinalWords += 'quintillionth|sextillionth|septillionth|octillionth|'
+    myOrdinalWords += 'nonillionth|decillionth|undecillionth|duodecillionth'
+    ## Number Words
+    myNumberWords = 'one|two|three|four|five|six|seven|eight|nine|ten|eleven|'
+    myNumberWords += 'twelve|thirteen|fourteen|fifteen|sixteen|seventeen|'
+    myNumberWords += 'eighteen|ninteen|twenty|thirty|forty|fifty|sixty|seventy|'
+    myNumberWords += 'eighty|ninety|hundred|thousand|million|billion|trillion|'
+    myNumberWords += 'quadrillion|quintillion|sextillion|septillion|octillion|'
+    myNumberWords += 'nonillion|decillion|undecillion|duodecillion|googol|centillion'
     ## End of Token Indicators
     endOfToken = '(?= |\.|\n|:|,)'
     ## Normal Text, unhighlighted
@@ -186,6 +217,11 @@ class PseudotaxusLexer(RegexLexer):
         'core': [## Op Words
                  (r'\s+(' + myOperatorWords + ')' + endOfToken,
                   Operator.Word),
+
+                 ## Algorithms
+                 (r'\s+(' + myAlgorithms + ')' + endOfToken,
+                  Name.Function),
+            
                  ## Keywords
                  (r'\b(' + myKeywords + ')' + endOfToken, Keyword),
 
@@ -193,7 +229,7 @@ class PseudotaxusLexer(RegexLexer):
                  (r'\b(' + myDatatypes +
                   ')(ish|esque|-like|s)?' + endOfToken,
                   Keyword.Type),
-
+            
                  ## Constants
                  (r'\b('+ myConstants + ')' + endOfToken,
                   Name.Constant),
@@ -222,6 +258,9 @@ class PseudotaxusLexer(RegexLexer):
             (r'\d+(?![.Ee])', Number.Integer),
             (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
             (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
-            (r'' + myComplexNumbers, num_replace)
+            (r'' + myComplexNumbers, num_replace),
+            (r'' + myOrdinals, Number),
+            (r'' + myOrdinalWords, Number),
+            (r'' + myNumberWords, Number)
         ],
     }
