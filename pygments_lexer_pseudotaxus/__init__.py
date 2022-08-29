@@ -131,7 +131,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Basics
     myPunctuation = '[(),:.?[\]{}\\\\]'
     ## Brackets
-    myFunctions = '\[.*\S+.*\]\s'
+    myFunctions = '\[.*\S+.*\](?:\s|[,.:?])'
     ## Capital Initial
     myVariables = '[A-Z]\w*'
     ## Scientific Notation
