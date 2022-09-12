@@ -93,7 +93,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Grade Scan Map Reduce
     myAlgorithms += 'grade up|grade down|scan|map|reduce|expand|replicate|'
     ## Membership
-    myAlgorithms += 'depth|match|tally|enlist|membership|find|index of|index|'
+    myAlgorithms += 'depth|match|tally|enlist|membership|index of|iota|'
     
     
     # Operator Symbols

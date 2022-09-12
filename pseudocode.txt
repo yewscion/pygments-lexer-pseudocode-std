@@ -40,6 +40,7 @@ begin [Program].
     max maximum min minimum maxima minima ceiling floor
     sort reverse search find filter in filter out
     grade up grade down scan map reduce expand replicate
+    depth match tally enlist membership index of iota
 ; Operators
     > < == != <> <= >= = !< !> ≡ ≯ ≮ ≥ ≤ ≠      ; Comparison
     less than more than greater than equals     ; Comparison Words 1
