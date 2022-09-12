@@ -26,7 +26,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Compute
     myKeywords += 'compute|calculate|determine|append|to|over|'
     ## Initialize
-    myKeywords += 'set|initialize|init|let|is|has|contains|'
+    myKeywords += 'set|initialize|init|let|is|has|contains|be|'
     ## Add/Sub one
     myKeywords += 'increment|bump|decrement|'
     ## If-Then-Else
@@ -42,7 +42,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Program Flow
     myKeywords += 'call|exception|as|recurse|begin|end|'
     ## Abstractions
-    myKeywords += 'this|that|except|in|at|'
+    myKeywords += 'this|that|except|in|at|with|'
     ## Type Ops
     myKeywords += 'convert|cast|ensure|expecting|expect'
     # -----------------------------------------------------------------------
@@ -70,7 +70,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Collections
     myDatatypes += 'list|array|sequence|every|each|member|index|'
     ## Abstractions
-    myDatatypes += 'nothing|maybe|symbol|many|any|'
+    myDatatypes += 'nothing|maybe|symbol|many|any|object'
     ## Program
     myDatatypes += 'constant|operator|procedure|argument|parameter|'
     ## OS
@@ -91,7 +91,9 @@ class PseudotaxusLexer(RegexLexer):
     ## Search Sort Filter
     myAlgorithms += 'sort|reverse|search|find|filter in|filter out|'
     ## Grade Scan Map Reduce
-    myAlgorithms += 'grade up|grade down|scan|map|reduce|expand|replicate'
+    myAlgorithms += 'grade up|grade down|scan|map|reduce|expand|replicate|'
+    ## Membership
+    myAlgorithms += 'depth|match|tally|enlist|membership|find|index of|index|'
     
     
     # Operator Symbols
@@ -109,7 +111,7 @@ class PseudotaxusLexer(RegexLexer):
     # Operator Words
     # -----------------------------------------------------------------------
     ## Comparison Words 1
-    myOperatorWords = 'less than|more than|greater than|'
+    myOperatorWords = 'less than|more than|greater than|equals|'
     ## Comparison Words 2
     myOperatorWords += 'equal to|different than|different from|'
     ## Logical Words
@@ -177,7 +179,7 @@ class PseudotaxusLexer(RegexLexer):
 
         S = ('<=', '>=', '<>', '!=', '==', '->', '<-', '*', '/', '!<', '!>',
              '||', '&&')
-        R = ('≤', '≥', '≠', '≠', '≡', '→', '←', '×', '÷', '≮', '≯', '∨', '∧')
+        R = ('≤', '≥', '≠', '≠', '=', '→', '←', '×', '÷', '≮', '≯', '∨', '∧')
 
         if op in S:
             op = R[S.index(op)]

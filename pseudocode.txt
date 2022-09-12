@@ -8,7 +8,7 @@ begin [Program].
     read obtain get from take use copy          ; Input
     print display show save return              ; Output
     compute calculate determine append to over  ; Compute
-    set initialize init let is has contains     ; Initialize
+    set initialize init let is has contains be  ; Initialize
     increment bump decrement                    ; Deviation
     if then else otherwise when unless          ; Branching
     while done endwhile do                      ; While
@@ -16,7 +16,7 @@ begin [Program].
     repeat until                                ; Repeat
     for endfor                                  ; For
     call exception as recurse                   ; Program Flow
-    this that except in                         ; Selectors
+    this that except in at with                 ; Selectors
     convert cast ensure expecting expect        ; Type Ops
 ; Constants
     true false                                  ; Booleans
@@ -28,7 +28,7 @@ begin [Program].
     number string character boolean             ; Basics
     truthy falsey                               ; Extended Boolean
     list array sequence every each member index ; Collections
-    nothing maybe symbol many any               ; Abstractions
+    nothing maybe symbol many any object        ; Abstractions
     constant operator procedure argument parameter ; Programming
     file stream pipe port line interrupt        ; OS
     numberish symbolesque file-like lists       ; Suffixes
@@ -42,7 +42,7 @@ begin [Program].
     grade up grade down scan map reduce expand replicate
 ; Operators
     > < == != <> <= >= = !< !> ≡ ≯ ≮ ≥ ≤ ≠      ; Comparison
-    less than more than greater than            ; Comparison Words 1
+    less than more than greater than equals     ; Comparison Words 1
     equal to different than different from      ; Comparison Words 2
     ^ * + - / % × ÷                             ; Arithmetic
     plus minus times divided by modulo          ; Arithmetic Words 1
