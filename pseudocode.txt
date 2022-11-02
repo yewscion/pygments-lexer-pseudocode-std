@@ -16,7 +16,7 @@ begin [Program].
     repeat until                                ; Repeat
     for endfor                                  ; For
     call exception as recurse                   ; Program Flow
-    this that except in at with                 ; Selectors
+    this that except in at with without aside   ; Selectors
     convert cast ensure expecting expect        ; Type Ops
 ; Constants
     true false                                  ; Booleans
@@ -41,6 +41,7 @@ begin [Program].
     sort reverse search find filter in filter out
     grade up grade down scan map reduce expand replicate
     depth match tally enlist membership index of iota
+    replicating
 ; Operators
     > < == != <> <= >= = !< !> ≡ ≯ ≮ ≥ ≤ ≠      ; Comparison
     less than more than greater than equals     ; Comparison Words 1
@@ -116,6 +117,7 @@ begin [Program].
    twentieth
    twenty-first
    one hundred and seventy third
+   zeroth
    
 ; Named Functions
     [Bluebird] [B] [hello] [⌊]
