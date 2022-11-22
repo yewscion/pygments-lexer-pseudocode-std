@@ -40,11 +40,15 @@ class PseudotaxusLexer(RegexLexer):
     ## For
     myKeywords += 'for|endfor|'
     ## Program Flow
-    myKeywords += 'call|exception|as|recurse|begin|end|'
+    myKeywords += 'call|calling|exception|as|recurse|begin|end|on|'
     ## Abstractions
     myKeywords += 'this|that|except|in|at|with|'
     ## Type Ops
-    myKeywords += 'convert|cast|ensure|expecting|expect'
+    myKeywords += 'convert|cast|ensure|expecting|expect|'
+    ## Structure Ops
+    myKeywords += 'where|containing|'
+    ## Uncertainty
+    myKeywords += 'either'
     # -----------------------------------------------------------------------
 
     # Constants
@@ -76,7 +80,9 @@ class PseudotaxusLexer(RegexLexer):
     ## OS
     myDatatypes += 'file|stream|pipe|port|line|interrupt|'
     ## References
-    myDatatypes += 'value|name|result|message|field|an|a|the'
+    myDatatypes += 'value|name|result|message|field|an|a|the|'
+    ## Structures
+    myDatatypes += 'structure'
     # -----------------------------------------------------------------------
 
     # Algorithms
@@ -93,7 +99,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Grade Scan Map Reduce
     myAlgorithms += 'grade up|grade down|scan|map|reduce|expand|replicate|'
     ## Membership
-    myAlgorithms += 'depth|match|tally|enlist|membership|index of|iota|'
+    myAlgorithms += 'depth|match|tally|enlist|membership|pick|iota'
     
     
     # Operator Symbols
