@@ -20,7 +20,7 @@ class PseudotaxusLexer(RegexLexer):
     # Keywords
     # -----------------------------------------------------------------------
     ## Input
-    myKeywords = 'read|obtain|get|from|take|use|copy|'
+    myKeywords = 'read|obtain|get|from|take|copy|expect|'
     ## Output
     myKeywords += 'print|display|show|save|return|'
     ## Compute
@@ -44,7 +44,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Abstractions
     myKeywords += 'this|that|except|in|at|with|'
     ## Type Ops
-    myKeywords += 'convert|cast|ensure|expecting|expect|'
+    myKeywords += 'convert|cast|ensure|expecting|'
     ## Structure Ops
     myKeywords += 'where|containing|'
     ## Uncertainty
@@ -99,7 +99,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Grade Scan Map Reduce
     myAlgorithms += 'grade up|grade down|scan|map|reduce|expand|replicate|'
     ## Membership
-    myAlgorithms += 'depth|match|tally|enlist|membership|pick|iota'
+    myAlgorithms += 'depth|match|tally|enlist|membership|pick|drop|take|iota'
     
     
     # Operator Symbols
