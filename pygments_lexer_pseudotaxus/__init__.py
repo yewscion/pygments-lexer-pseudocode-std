@@ -24,7 +24,7 @@ class PseudotaxusLexer(RegexLexer):
     ## Output
     myKeywords += 'print|display|show|save|return|'
     ## Compute
-    myKeywords += 'compute|calculate|determine|append|to|over|'
+    myKeywords += 'compute|execute|calculate|determine|append|to|over|'
     ## Initialize
     myKeywords += 'set|initialize|init|let|is|has|contains|be|'
     ## Add/Sub one
@@ -40,7 +40,7 @@ class PseudotaxusLexer(RegexLexer):
     ## For
     myKeywords += 'for|endfor|'
     ## Program Flow
-    myKeywords += 'call|calling|exception|as|recurse|begin|end|on|'
+    myKeywords += 'call|calling|exception|as|recurse|begin|end|rhizome|on|'
     ## Abstractions
     myKeywords += 'this|that|except|in|at|with|'
     ## Type Ops
@@ -62,27 +62,97 @@ class PseudotaxusLexer(RegexLexer):
     ## Formatting
     myConstants += 'newline|beep|indent|'
     ## Assumptions
-    myConstants += 'user|screen|system'
+    myConstants += 'user|screen|system|'
+    ## Types of Procedures
+    myConstants += 'datum|data|caclulation|calculations|action|actions'
     # -----------------------------------------------------------------------
 
     # Datatypes
     # -----------------------------------------------------------------------
     ## Basics
-    myDatatypes = 'number|string|character|boolean|'
+    myDatatypes = 'number|word|phrase|item|identifier|'
     ## Extended Boolean
     myDatatypes += 'truthy|falsey|'
     ## Collections
-    myDatatypes += 'list|array|sequence|every|each|member|index|'
+    myDatatypes += 'sequence|every|each|member|index|'
     ## Abstractions
-    myDatatypes += 'nothing|maybe|symbol|many|any|object'
-    ## Program
+    myDatatypes += 'nothing|maybe|symbol|many|any|object|'
+    ## Programming
     myDatatypes += 'constant|operator|procedure|argument|parameter|'
     ## OS
     myDatatypes += 'file|stream|pipe|port|line|interrupt|'
-    ## References
+    ## Programming Refs
     myDatatypes += 'value|name|result|message|field|an|a|the|'
-    ## Structures
-    myDatatypes += 'structure'
+    ## Primitive Types
+    myDatatypes += 'integer|character|boolean|floating-point|fixed-point|'
+    myDatatypes += 'pointer|reference|enum|enumeration|'
+    ## Composite Types
+    myDatatypes += 'structure|array|record|tuple|string|union|variant|'
+    myDatatypes += 'coproduct|t-union|sum-type|product-type|'
+    ## Abstract Data Types
+    myDatatypes += 'list|set|suite|stack|queue|tree|'
+    myDatatypes += 'graph|heap|grid|hash-map|'
+    ## Concrete Data Types
+    myDatatypes += 'priority-queue|binary-tree|quad-tree|cons-list|'
+    myDatatypes += 'doubly-linked-list|k-d-tree|skip-list|linked-list|matrix|'
+    myDatatypes += 'lookup-table|bit-array|variable-length-array|dynamic-array|'
+    myDatatypes += 'gap-buffer|zipper|b-tree|binary-search-tree|b-plus-tree|'
+    myDatatypes += 'binary-heap|binomial-heap|radix-tree|suffix-tree|'
+    myDatatypes += 'ternary-tree|m-ary-tree|k-ary-tree|and-or-tree|spqr-tree|'
+    myDatatypes += 'in-tree|segment-tree|range-tree|bin|finger-tree|'
+    myDatatypes += 'bloom-filter|count-min-sketch|adjacency-list|adjacency-matrix|'
+    myDatatypes += 'decision-tree|directed-graph|undirected-graph|forest|'
+    myDatatypes += 'link-cut-tree|dynamic-tree|array-list|a-list|'
+    ## Plural Basics
+    myDatatypes += 'numbers|words|phrases|items|identifiers|'
+    ## Plural Collections
+    myDatatypes += 'sequences|members|indices|'
+    ## Plural Abstractions
+    myDatatypes += 'nothings|maybes|symbols|objects|'
+    ## Plural Programming
+    myDatatypes += 'constants|operators|procedures|arguments|parameters|'
+    ## Plural OS
+    myDatatypes += 'files|streams|pipes|ports|lines|interrupts|'
+    ## Plural Programming Refs
+    myDatatypes += 'values|names|results|messages|fields|'
+    ## Plural Primitive Types
+    myDatatypes += 'integers|characters|booleans|floating-points|fixed-points|'
+    myDatatypes += 'pointers|references|enums|enumerations|'
+    ## Plural Composite Types
+    myDatatypes += 'structures|arrays|records|tuples|strings|unions|'
+    myDatatypes += 'variants|coproducts|t-unions|sum-types|product-types|'
+    ## Plural Abstract Data Types
+    myDatatypes += 'lists|sets|suites|stacks|queues|trees|'
+    myDatatypes += 'graphs|heaps|grids|hash-maps|'
+    ## Plural Concrete Data Types
+    myDatatypes += 'priority-queues|binary-trees|quad-trees|cons-lists|'
+    myDatatypes += 'doubly-linked-lists|k-d-trees|skip-lists|linked-lists|'
+    myDatatypes += 'matrices|lookup-tables|bit-arrays|variable-length-arrays|'
+    myDatatypes += 'dynamic-arrays|gap-buffers|zippers|b-trees|'
+    myDatatypes += 'binary-search-trees|b-plus-trees|binary-heaps|binomial-heaps|'
+    myDatatypes += 'radix-trees|suffix-trees|ternary-trees|m-ary-trees|'
+    myDatatypes += 'k-ary-trees|and-or-trees|spqr-trees|in-trees|segment-trees|'
+    myDatatypes += 'range-trees|bins|finger-trees|bloom-filters|'
+    myDatatypes += 'count-min-sketches|adjacency-lists|adjacency-matrices|'
+    myDatatypes += 'decision-trees|directed-graphs|undirected-graphs|forests|'
+    myDatatypes += 'link-cut-trees|dynamic-trees|array-lists|a-lists|'
+    ## Imprecise Basics
+    myDatatypes += 'numberish|numbery|stringish|stringy|characterish|'
+    myDatatypes += 'charactery|booleanish|booleany|'
+    ## Imprecise Collections
+    myDatatypes += 'listish|listy|arrayish|array-y|sequenceish|'
+    myDatatypes += 'sequencey|memberish|membery|indexish|indexy|'
+    ## Imprecise Abstractions
+    myDatatypes += 'nothingish|nothingy|maybeish|maybe-y|symbolish|'
+    myDatatypes += 'symboly|objectish|objecty|'
+    ## Imprecise Programming
+    myDatatypes += 'constantish|constanty|operatorish|operatory|'
+    myDatatypes += 'procedureish|procedurey|argumentish|argumenty|'
+    myDatatypes += 'parameterish|parametery|'
+    ## Imprecise OS
+    myDatatypes += 'fileish|filey|streamish|streamy|pipeish|'
+    myDatatypes += 'pipey|portish|porty|lineish|liney|'
+    myDatatypes += 'interruptish|interrupty'
     # -----------------------------------------------------------------------
 
     # Algorithms
